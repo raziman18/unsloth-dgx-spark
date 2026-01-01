@@ -9,7 +9,7 @@ services:
     container_name: unsloth-dgx-spark
     restart: unless-stopped
     ports:
-      - "8889:8888"
+      - "8888:8888"
     environment:
       GEMINI_API_KEY: "${GEMINI_API_KEY}" # optional
       WANDB_API_KEY: "${WANDB_API_KEY}" # optional
