@@ -9,7 +9,7 @@ git clone https://github.com/raziman18/unsloth-dgx-spark.git && cd unsloth-dgx-s
 
 #### 2. **Create .env**
 ```
-echo echo "UID=$(id -u)\nGID=$(id -g)" >> .env
+echo "UID=$(id -u)\nGID=$(id -g)" >> .env
 ```
 
 #### 3. **Build**
