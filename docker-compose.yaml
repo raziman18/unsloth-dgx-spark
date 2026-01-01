@@ -1,0 +1,32 @@
+services:
+  unsloth:
+    build:
+      context: .
+      args:
+        UID: "${UID}"
+        GID: "${GID}"
+      dockerfile: Dockerfile
+    container_name: unsloth
+    restart: unless-stopped
+    ports:
+      - "8889:8888"
+    environment:
+      GEMINI_API_KEY: "${GEMINI_API_KEY}"
+      WANDB_API_KEY: "${WANDB_API_KEY}"
+      HUGGINGFACE_HUB_TOKEN: "${HUGGINGFACE_HUB_TOKEN}"
+    user: "${UID}:${GID}"
+    volumes:
+      - ./app:/app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      stack:
+        soft: 67108864
+        hard: 67108864
+    gpus: all
