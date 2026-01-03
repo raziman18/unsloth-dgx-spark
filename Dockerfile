@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/vllm:25.09-py3
+FROM nvcr.io/nvidia/vllm:25.11-py3
 
 ARG UID
 ARG GID
@@ -24,9 +24,11 @@ RUN chown -R unsloth:unsloth /app
 
 RUN pip install transformers peft "datasets==4.3.0" "trl==0.19.1" && \
 	pip install --no-deps unsloth unsloth_zoo && \
-	pip install hf_transfer && \
+	pip install hf_transfer jupyterlab && \
 	pip install --no-deps bitsandbytes && \
 	pip install synthetic-data-kit deepeval google-genai wandb
+
+RUN apt-get update && apt-get install -y cmake libcurl4-openssl-dev
 
 USER unsloth
 
